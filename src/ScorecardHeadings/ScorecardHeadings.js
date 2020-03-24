@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TractionMissionControlContext from '../TractionMissionControlContext';
 import './ScorecardHeadings.css';
 import moment from 'moment';
+import config from '../config';
 
 class ScorecardHeadings extends Component {
   static contextType = TractionMissionControlContext;
@@ -11,7 +12,27 @@ class ScorecardHeadings extends Component {
     const minDate = this.props.dates_to_show[0];
     const lastWeek = moment(currentWeek).subtract(1, 'week').format('YYYY-MM-DD');
     if (lastWeek >= minDate) {
-      this.context.moveCurrentWeek(lastWeek);
+      const weekId = 1;
+      const updatedWeek = {
+        current_week: lastWeek
+      };
+      fetch(config.API_ENDPOINT + `/api/weeks/${weekId}`, {
+        method: 'PATCH',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(updatedWeek)
+      })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(error => Promise.reject(error))
+      })
+      .then(() => {
+        this.context.moveCurrentWeek(lastWeek);
+      })
+      .catch(error => {
+          console.error({ error });
+      });
     };
   };
 
@@ -20,9 +41,28 @@ class ScorecardHeadings extends Component {
     const maxDate = this.props.dates_to_show[this.props.dates_to_show.length - 1];
     const nextWeek = moment(currentWeek).add(1, 'week').format('YYYY-MM-DD');
     if (nextWeek <= maxDate) {
-      this.context.moveCurrentWeek(nextWeek);
+      const weekId = 1;
+      const updatedWeek = {
+        current_week: nextWeek
+      };
+      fetch(config.API_ENDPOINT + `/api/weeks/${weekId}`, {
+        method: 'PATCH',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(updatedWeek)
+      })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(error => Promise.reject(error))
+      })
+      .then(() => {
+        this.context.moveCurrentWeek(nextWeek);
+      })
+      .catch(error => {
+          console.error({ error });
+      });
     };
-    
   };
 
   render() {

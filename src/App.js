@@ -23,19 +23,18 @@ class App extends Component {
       todos: [],
       issues: [],
       team: [],
+      endOfWeek: '',
+      currentWeek: '',
+      metrics: [],
       todosReady: false,
       issuesReady: false,
-      teamReady: false
+      teamReady: false,
+      weeksReady: false,
+      metricsReady: false
     };
   };
 
   componentDidMount() {
-    this.setState({
-      metrics: data.metrics,
-      endOfWeek: data.endOfWeek,
-      currentWeek: data.currentWeek
-    });
-
     fetch(config.API_ENDPOINT + '/api/todos')
       .then(todosResponse => {
         if (!todosResponse.ok) {
@@ -58,10 +57,27 @@ class App extends Component {
         this.setState({ issues, issuesReady: true})
       })
       .catch(issuesError => this.setState({ issuesError }));
+    fetch(config.API_ENDPOINT + '/api/weeks')
+      .then(weeksResponse => {
+        if (!weeksResponse.ok) {
+          throw new Error(weeksResponse.status)
+        }
+        return weeksResponse.json()
+      })
+      .then(weeks => {
+        this.setState({
+          endOfWeek: weeks[0].endOfWeek,
+          currentWeek: weeks[0].currentWeek,
+          weeksReady: true
+        })
+      })
+      .catch(weeksError => this.setState({ weeksError }));
     
     this.setState({
       team: data.team,
-      teamReady: true
+      teamReady: true,
+      metrics: data.metrics,
+      metricsReady: true
     });
   };
 
@@ -195,10 +211,14 @@ class App extends Component {
   };
 
   render() {
-    if(!this.state.todosReady || !this.state.issuesReady || !this.state.teamReady) {
-      return (
-        <Loading />
-      )
+    if(!this.state.todosReady || 
+      !this.state.issuesReady || 
+      !this.state.teamReady || 
+      !this.state.weeksReady || 
+      !this.state.metricsReady) {
+        return (
+          <Loading />
+        )
     } else {
       const contextValue = {
         todos: this.state.todos,
