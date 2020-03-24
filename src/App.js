@@ -57,6 +57,20 @@ class App extends Component {
         this.setState({ issues, issuesReady: true})
       })
       .catch(issuesError => this.setState({ issuesError }));
+    fetch(config.API_ENDPOINT + '/api/team')
+      .then(teamResponse => {
+        if (!teamResponse.ok) {
+          throw new Error(teamResponse.status)
+        }
+        return teamResponse.json()
+      })
+      .then(team => {
+        this.setState({
+          team: team.map(teamMember => teamMember.name),
+          teamReady: true
+        })
+      })
+      .catch(teamError => this.setState({ teamError }));
     fetch(config.API_ENDPOINT + '/api/weeks')
       .then(weeksResponse => {
         if (!weeksResponse.ok) {
@@ -72,13 +86,17 @@ class App extends Component {
         })
       })
       .catch(weeksError => this.setState({ weeksError }));
-    
-    this.setState({
-      team: data.team,
-      teamReady: true,
-      metrics: data.metrics,
-      metricsReady: true
-    });
+    fetch(config.API_ENDPOINT + '/api/metrics')
+      .then(metricsResponse => {
+        if (!metricsResponse.ok) {
+          throw new Error(metricsResponse.status)
+        }
+        return metricsResponse.json()
+      })
+      .then(metrics => {
+        this.setState({ metrics, metricsReady: true })
+      })
+      .catch(metricsError => this.setState({ metricsError }));
   };
 
   handleAddTodo = newTodo => {
