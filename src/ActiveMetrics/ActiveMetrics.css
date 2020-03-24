@@ -1,0 +1,30 @@
+.active-metrics-wrapper {
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 10px;
+    background-color: gray;
+}
+.active-metrics {
+    overflow-x: scroll;
+    color: black;
+    margin: 5px;
+    padding-top: 25px;
+}
+
+.add-metric-button {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid rgb(142, 169, 219);
+    border-radius: 5px;
+    transition-duration: 0.4s;
+  }
+  
+  .add-metric-button:hover:not([disabled]) {
+    background-color: rgb(142, 169, 219);
+    border-color: rgb(61, 108, 193);
+    color: white;
+    cursor: pointer;
+  }

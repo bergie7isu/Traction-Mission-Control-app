@@ -1,0 +1,63 @@
+.issue-filters {
+  border: 2px solid darkgray;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 20px;
+  background-color: gray;
+  color: black;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filtered-issues-list {
+  border: 2px solid darkgray;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 20px;
+  background-color: gray;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filtered-issues-title, .issue-filters-title {
+  color: white;
+  font-size: 26px;
+}
+
+.filter-issue-text label, .filter-issue-who label, .filter-issue-start-date label, .filter-issue-end-date label, .filter-issue-status label {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.filter-issue-text textarea, .filter-issue-who select, .filter-issue-start-date input, .filter-issue-end-date input, .filter-issue-status select {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-align-last: center;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.issue-filters select:hover, .issue-filters input:hover {
+  cursor: pointer;
+}
+
+.filter-issue-text textarea {
+  width: 95%;
+}
+
+.filter-issue-text, .filter-issue-who, .filter-issue-start-date, .filter-issue-end-date, .filter-issue-status {
+  background-color: rgb(255, 124, 128);
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px;
+}

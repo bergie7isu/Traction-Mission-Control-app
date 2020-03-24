@@ -1,0 +1,12 @@
+.archived-metrics-wrapper {
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 10px;
+    background-color: gray;
+}
+.archived-metrics {
+    overflow-x: scroll;
+    color: black;
+    margin: 5px;
+}

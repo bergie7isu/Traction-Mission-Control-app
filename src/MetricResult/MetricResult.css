@@ -1,0 +1,56 @@
+.metric-result {
+  width: 100px;
+}
+
+.metric-actual, .metric-plan {
+  border: 1px black solid;
+  width: 100px;
+}
+
+.metric-plan {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgray;
+}
+
+.metric-actual {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.metric-actual.green {
+  background-color: green;
+}
+
+.metric-actual.red {
+  background-color: red;
+}
+
+.metric-actual.gray {
+  background-color: gray;
+}
+
+.metric-actual-input-form input {
+  text-align: center;
+  width: 90%;
+}
+
+.edit-result-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.metric-actual-input-form input::-webkit-outer-spin-button, .metric-actual-input-form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.metric-actual-input-form input[type=number] {
+  -moz-appearance: textfield;
+}

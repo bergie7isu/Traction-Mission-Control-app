@@ -1,0 +1,63 @@
+.todo-filters {
+  border: 2px solid darkgray;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 20px;
+  background-color: gray;
+  color: black;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filtered-todos-list {
+  border: 2px solid darkgray;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 20px;
+  background-color: gray;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filtered-todos-title, .todo-filters-title {
+  color: white;
+  font-size: 26px;
+}
+
+.filter-todo-text label, .filter-todo-who label, .filter-todo-start-date label, .filter-todo-end-date label, .filter-todo-status label {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.filter-todo-text textarea, .filter-todo-who select, .filter-todo-start-date input, .filter-todo-end-date input, .filter-todo-status select {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-align-last: center;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.todo-filters select:hover, .todo-filters input:hover {
+  cursor: pointer;
+}
+
+.filter-todo-text textarea {
+  width: 95%;
+}
+
+.filter-todo-text, .filter-todo-who, .filter-todo-start-date, .filter-todo-end-date, .filter-todo-status {
+  background-color: rgb(255, 124, 128);
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px;
+}

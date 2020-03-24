@@ -1,0 +1,9 @@
+{
+    "version": 2,
+    "alias": "bergie7isu-traction-mission-control",
+    "name": "traction-mission-control",
+    "routes": [
+        { "handle": "filesystem" },
+        { "src": "/.*", "dest": "/index.html" }
+    ]
+  }

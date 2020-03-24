@@ -1,0 +1,128 @@
+.edit-metric {
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 50px;
+    background-color: gray;
+    color: black;
+    position: relative;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+.edit-metric-title {
+    color: white;
+    font-size: 26px;
+}
+
+.set-plan-title, .edit-metric-metric label, .edit-metric-who label, .edit-metric-type label, .edit-metric-format label, .edit-metric-decimals label {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.edit-metric-metric textarea, .edit-metric-who select, .edit-metric-type select, .edit-metric-format select, .edit-metric-decimals input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    text-align-last: center;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.edit-metric select:hover, .edit-metric input:hover {
+    cursor: pointer;
+}
+
+.edit-metric-metric textarea {
+    width: 95%;
+}
+
+.edit-metric-metric, .edit-metric-who, .edit-metric-type, .edit-metric-format, .edit-metric-decimals, .edit-metric-plan {
+    background-color: rgb(255, 124, 128);
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.edit-metric-buttons button {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid rgb(142, 169, 219);
+    border-radius: 5px;
+    transition-duration: 0.4s;
+}
+  
+.edit-metric-buttons button:hover:not([disabled]) {
+    background-color: rgb(142, 169, 219);
+    border-color: rgb(61, 108, 193);
+    color: white;
+    cursor: pointer;
+}
+
+.archive-metric-button {
+    font-size: 10px;
+    font-weight: bold;
+    margin: 5px;
+    padding: 2px;
+    border: 2px solid red;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+}
+  
+.archive-metric-button:hover:not([disabled]) {
+    background-color: red;
+    border-color: darkred;
+    color: white;
+    cursor: pointer;
+}
+
+.data-input label {
+    display: inline-block;
+    text-align: right;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100px;
+    margin-right: 5px;
+}
+
+.data-input input {
+    display: inline-block;
+    text-align: center;
+    text-align-last: center;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100px;
+}
+
+.plan-date-wrapper {
+    background-color: rgb(142, 169, 219);
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.plan-start-date, .plan-end-date {
+    display: inline-flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.reset-plan-dates {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

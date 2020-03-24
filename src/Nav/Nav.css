@@ -1,0 +1,38 @@
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: rgb(142, 169, 219);
+  text-align: center;
+  padding: 5px;
+  border-radius: 0 0 30px 30px;
+  z-index: 101;
+  border-bottom: 1px solid black;
+}
+
+.nav-link {
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.selected {
+  background-color:rgb(255, 124, 128);
+}
+
+.app-title {
+  color: black;
+}

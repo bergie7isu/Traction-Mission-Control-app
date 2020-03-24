@@ -1,0 +1,87 @@
+.scorecard-headings {
+  display: inline-flex;
+  font-weight: bold;
+}
+
+.metric-info-headings {
+  display: flex;
+  align-items: center;
+  position: sticky;
+  left: 0;
+  background-color: gray;
+  z-index: 100;
+}
+
+.metric-info-headings-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: rgb(255, 124, 128);
+  border-top: 1px black solid;
+  border-left: 1px black solid;
+}
+
+.current-week.active {
+  background-color: yellow;
+}
+
+.metric-who-heading, .metric-name-heading, .metric-results-date {
+  border: 1px black solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metric-buttons-heading {
+  width: 70px;
+}
+
+.metric-who-heading {
+  width: 100px;
+}
+
+.metric-name-heading {
+  width: 150px;
+}
+
+.metric-results-headings {
+  display: flex;
+  background-color: rgb(255, 124, 128);
+  border-top: 1px black solid;
+  border-right: 1px black solid;
+}
+
+.metric-results-date {
+  width: 100px;
+}
+
+.metric-results-headings .current-week {
+  display: block;
+  position: relative;
+}
+
+.metric-results-date-current-week-wrapper.active {
+  height: 32px;
+  width: 100%;
+  font-size: 12px;
+  position: absolute;
+  top: -35px;
+  display: flex;
+  align-items: center;
+}
+
+.metric-results-date-current-week-wrapper.archived {
+  display: none;
+}
+
+.metric-results-date-current-week {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.metric-info-headings-blocker.active {
+  height: 35px;
+  width: 100%;
+  position: absolute;
+  top: -35px;
+  background-color: gray;
+}

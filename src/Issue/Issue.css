@@ -1,0 +1,193 @@
+.issue {
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 5px;
+  text-align: center;
+  background-color: lightgray;
+  color: black;
+  padding: 5px;
+  position: relative;
+}
+
+.issue-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.issue-issue-wrapper {
+  flex: 1;
+}
+
+.issue-issue {
+  border: 1px solid black;
+  background-color: rgb(191, 191, 191);
+  border-radius: 5px 5px 0 0;
+  padding: 5px;
+}
+
+.issue-who {
+  font-weight: bold;
+  background-color: rgb(166, 166, 166);
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 0 0 5px 5px;
+  padding: 5px;
+}
+
+.issue-dates {
+  width: 100px;
+  font-size: 14px;
+}
+
+.issue-status {
+  display: flex;
+  justify-content: left;
+  font-size: 14px;
+}
+
+.issue-status-status, .issue-status-date {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.issue-status-buttons {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+.issue-button {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  transition-duration: 0.4s;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.issue-button:hover, .issue-button.true {
+  color: white;
+  cursor: pointer;
+}
+
+.issue-solved-button {
+  border: 2px solid green;
+}
+
+.issue-solved-button:hover, .issue-solved-button.true {
+  background-color: green;
+  border-color: darkgreen;
+  cursor: pointer;
+}
+
+.issue-killed-button {
+  border: 2px solid red;
+}
+
+.issue-killed-button:hover, .issue-killed-button.true {
+  background-color: red;
+  border-color: darkred;
+  cursor: pointer;
+}
+
+.issue-combined-button {
+  border: 2px solid orange;
+}
+
+.issue-combined-button:hover, .issue-combined-button.true {
+  background-color: orange;
+  border-color: darkorange;
+  cursor: pointer;
+}
+
+.issue-edit-button {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  position: absolute;
+  right: 5px;
+  bottom: 8.5px;
+  padding: 2px;
+  border-radius: 5px;
+  transition-duration: 0.4s;
+  font-weight: bold;
+  font-size: 10px;
+  border: 2px solid darkgray;
+}
+
+.issue-edit-button:hover {
+  background-color: darkgray;
+  border-color: gray;
+  color: white;
+  cursor: pointer;
+}
+
+.issue.solved {
+  background-color: rgb(0, 196, 89);
+}
+
+.issue.killed {
+  background-color: rgb(255, 87, 87);;
+}
+
+.issue.combined {
+  background-color: rgb(255, 210, 67);
+}
+
+@media screen and (min-width: 400px) {
+  .issue-status {
+    justify-content: center;
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .issue-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  .issue-status-buttons {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+  }
+
+  .issue-content {
+    flex: 1;
+  }
+
+  .issue-button {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding: 2px;
+  }
+
+  .issue-dates {
+    margin-right: 30px;
+  }
+
+  .issue-status {
+    flex-direction: column;
+    width: 100px;
+    margin-left: 30px;
+    margin-right: 0;
+  }
+
+  .issue-status-status, .issue-status-date {
+    margin: 0;
+  }
+
+  .hidden {
+    display: none;
+  }
+}

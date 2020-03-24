@@ -1,0 +1,59 @@
+.metric {
+  display: inline-flex;
+}
+
+.metric-info {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: sticky;
+  left: 0;
+  background-color: gray;
+  z-index: 100;
+}
+
+.metric-buttons {
+  width: 70px;
+}
+
+.metric-info-wrapper {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 100%;
+  position: sticky;
+  left: 0;
+  border-left: 1px black solid;
+}
+
+.metric-who, .metric-name {
+  border: 1px black solid;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgray;
+}
+
+.metric-who {
+  width: 100px;
+}
+
+.archive-date {
+  font-size: 12px;
+}
+
+.metric-name {
+  width: 150px;
+}
+
+.metric-results {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-right: 1px black solid;
+}
+
+.archive-date-heading {
+  font-weight: bold;
+}

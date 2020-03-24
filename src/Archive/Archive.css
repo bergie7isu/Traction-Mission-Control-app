@@ -1,0 +1,44 @@
+.archive-select {
+  border: 2px solid darkgray;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 10px;
+  background-color: gray;
+  color: black;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.select-wrapper label {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.select-wrapper select {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-align-last: center;
+  border-radius: 5px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.select-wrapper select:hover {
+  cursor: pointer;
+}
+
+.select-wrapper {
+  background-color: rgb(142, 169, 219);
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 5px;
+}

@@ -1,0 +1,90 @@
+.edit-issue {
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 50px;
+    background-color: gray;
+    color: black;
+    position: relative;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+.edit-issue-title {
+    color: white;
+    font-size: 26px;
+}
+
+.edit-issue-issue label, .edit-issue-who label {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.edit-issue-issue textarea, .edit-issue-who select {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    text-align-last: center;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.edit-issue select:hover {
+    cursor: pointer;
+}
+
+.edit-issue-issue textarea {
+    width: 95%;
+}
+
+.edit-issue-issue, .edit-issue-who {
+    background-color: rgb(255, 124, 128);
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.edit-issue-buttons button {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid rgb(142, 169, 219);
+    border-radius: 5px;
+    transition-duration: 0.4s;
+}
+  
+.edit-issue-buttons button:hover:not([disabled]) {
+    background-color: rgb(142, 169, 219);
+    border-color: rgb(61, 108, 193);
+    color: white;
+    cursor: pointer;
+}
+
+.delete-issue-button {
+    font-size: 10px;
+    font-weight: bold;
+    margin: 5px;
+    padding: 2px;
+    border: 2px solid red;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+}
+  
+.delete-issue-button:hover:not([disabled]) {
+    background-color: red;
+    border-color: darkred;
+    color: white;
+    cursor: pointer;
+}
