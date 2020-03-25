@@ -57,3 +57,43 @@
 .archive-date-heading {
   font-weight: bold;
 }
+
+.sort-metric-up, .sort-metric-down, .metric-edit-button, .resurrect-metric-button {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+  margin: 2px;
+  padding: 2px;
+  border-radius: 5px;
+  transition-duration: 0.4s;
+  font-weight: bold;
+  font-size: 12px;
+  border: 2px solid rgb(142, 169, 219);
+}
+
+.sort-metric-up:hover, .sort-metric-down:hover, .metric-edit-button:hover, .resurrect-metric-button:hover {
+  background-color: rgb(142, 169, 219);
+  border-color: rgb(61, 108, 193);
+  color: white;
+  cursor: pointer;
+}
+
+.sort-metric-up i, .sort-metric-down i {
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 4px;
+  transition-duration: 0.4s;
+}
+
+i.up {
+  transform: translateY(3px) rotate(-135deg) ;
+  -webkit-transform: translateY(3px) rotate(-135deg) ;
+}
+
+i.down {
+  transform: translateY(-1px) rotate(45deg);
+  -webkit-transform: translateY(-1px) rotate(45deg);
+}
+
+.sort-metric-up:hover .arrow, .sort-metric-down:hover .arrow {
+  border-color: white;
+}

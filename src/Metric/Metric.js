@@ -123,12 +123,12 @@ class Metric extends Component {
               <button 
                 className={`sort-metric-up ${this.props.sortButtons}`}
                 onClick={() => this.handleSortUp()}>
-                  Up
+                  <i className="arrow up"></i>
               </button>
               <button 
                 className={`sort-metric-down ${this.props.sortButtons}`}
                 onClick={() => this.handleSortDown()}>
-                  Down
+                  <i className="arrow down"></i>
               </button>
             </div>
             <Link to={`/EditMetric/${this.props.id}`}>
@@ -144,12 +144,11 @@ class Metric extends Component {
               <div className='archive-date-date'>
                 {moment(this.props.archived).format('M/D/YYYY')}
               </div>
-              <div className='resurrect-metric-button'>
-                <button
-                  onClick={() => this.handleResurrect()}>
-                    Resurrect
-                </button>
-              </div>
+              <button
+                className='resurrect-metric-button'
+                onClick={() => this.handleResurrect()}>
+                  Resurrect
+              </button>
             </div>
           </div>
           <div className='metric-info-wrapper'>

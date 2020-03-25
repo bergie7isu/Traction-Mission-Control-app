@@ -95,7 +95,7 @@ class ScorecardHeadings extends Component {
                       className='move-current-week-left-button'
                       type='button'
                       onClick={() => this.moveCurrentWeekLeft()}>
-                        {'<='}
+                        <i className="arrow left"></i>
                     </button>
                     <div className='metric-results-date-current-week'>
                       {(date === currentWeek) ? 'current week': ''}
@@ -104,7 +104,7 @@ class ScorecardHeadings extends Component {
                       className='move-current-week-right-button'
                       type='button'
                       onClick={() => this.moveCurrentWeekRight()}>
-                        {'=>'}
+                        <i className="arrow right"></i>
                     </button>
                   </div>
               </div>
