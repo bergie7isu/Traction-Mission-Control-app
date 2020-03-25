@@ -59,9 +59,28 @@ class L10Meeting extends Component {
       });
       return updatedIssue;
     });
-
+    const weekId = 1;
     const nextWeek = moment(currentWeek).add(1, 'week').format('YYYY-MM-DD');
-    this.context.moveCurrentWeek(nextWeek);
+    const updatedWeek = {
+      current_week: nextWeek
+    };
+    fetch(config.API_ENDPOINT + `/api/weeks/${weekId}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(updatedWeek)
+    })
+    .then(res => {
+      if (!res.ok)
+        return res.json().then(error => Promise.reject(error))
+    })
+    .then(() => {
+      this.context.moveCurrentWeek(nextWeek);
+    })
+    .catch(error => {
+        console.error({ error });
+    });
   };
 
   render() {

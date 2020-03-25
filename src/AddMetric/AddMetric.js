@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TractionMissionControlContext from '../TractionMissionControlContext';
 import ValidationError from '../ValidationError/ValidationError';
 import moment from 'moment';
+import config from '../config';
 import './AddMetric.css';
 
 class AddMetric extends Component {
@@ -46,7 +47,6 @@ class AddMetric extends Component {
             });
         };
         const newMetric = {
-            id: Math.ceil(Math.random() * 10000),
             sort: numberOfActiveMetrics + 1,
             status: 'active',
             who: this.state.who.value,
@@ -55,11 +55,28 @@ class AddMetric extends Component {
             metric_format: this.state.format.value,
             decimals: this.state.decimals.value,
             created: moment(Date.now()).format('YYYY-MM-DD'),
-            archived: "",
+            archived: null,
             data: thirteenWeeksOfData
         };
-        this.context.addMetric(newMetric);
-        this.props.history.goBack();
+        fetch(config.API_ENDPOINT + `/api/metrics`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newMetric)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(response.status)}
+            return response.json()
+        })
+        .then((jsonNewMetric) => {
+            this.context.addMetric(jsonNewMetric);
+            this.props.history.goBack();
+        })
+        .catch(error => {
+            console.error({ error });
+        });
     };
 
     updateMetric(metric) {

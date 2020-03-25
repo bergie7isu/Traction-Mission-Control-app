@@ -4,6 +4,7 @@ import TractionMissionControlContext from '../TractionMissionControlContext';
 import MetricResult from '../MetricResult/MetricResult';
 import './Metric.css';
 import moment from 'moment';
+import config from '../config';
 
 class Metric extends Component {
   static contextType = TractionMissionControlContext;
@@ -17,13 +18,31 @@ class Metric extends Component {
         ...metrics.find(metric => Number(metric.id) === Number(moveUpId)),
         sort: sortNumber - 1
       };
-      const moveDownId = metrics.find(metric => Number(metric.sort) === sortNumber - 1).id;
+      const moveDownId = metrics.find(metric => Number(metric.sort) === sortNumber - 1 && metric.status === 'active').id;
       const metricToMoveDown = {
         ...metrics.find(metric => Number(metric.id) === Number(moveDownId)),
         sort: sortNumber
       };
       const metricsToUpdate = [metricToMoveUp, metricToMoveDown];
-      this.context.editMetric(metricsToUpdate, moveUpId, moveDownId);
+      for (let i = 0; i < metricsToUpdate.length; i++) {
+        fetch(config.API_ENDPOINT + `/api/metrics/${metricsToUpdate[i].id}`, {
+          method: 'PATCH',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(metricsToUpdate[i])
+        })
+        .then(res => {
+          if (!res.ok)
+            return res.json().then(error => Promise.reject(error))
+        })
+        .then(() => {
+          this.context.editMetric([metricsToUpdate[i]]);
+        })
+        .catch(error => {
+          console.error({ error });
+        });
+      };
     };
   };
 
@@ -37,13 +56,31 @@ class Metric extends Component {
         ...metrics.find(metric => Number(metric.id) === Number(moveDownId)),
         sort: sortNumber + 1
       };
-      const moveUpId = metrics.find(metric => Number(metric.sort) === sortNumber + 1).id;
+      const moveUpId = metrics.find(metric => Number(metric.sort) === sortNumber + 1 && metric.status === 'active').id;
       const metricToMoveUp = {
         ...metrics.find(metric => Number(metric.id) === Number(moveUpId)),
         sort: sortNumber
       };
       const metricsToUpdate = [metricToMoveUp, metricToMoveDown];
-      this.context.editMetric(metricsToUpdate);
+      for (let i = 0; i < metricsToUpdate.length; i++) {
+        fetch(config.API_ENDPOINT + `/api/metrics/${metricsToUpdate[i].id}`, {
+          method: 'PATCH',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(metricsToUpdate[i])
+        })
+        .then(res => {
+          if (!res.ok)
+            return res.json().then(error => Promise.reject(error))
+        })
+        .then(() => {
+          this.context.editMetric([metricsToUpdate[i]]);
+        })
+        .catch(error => {
+          console.error({ error });
+        });
+      };
     };
   };
 
@@ -51,14 +88,30 @@ class Metric extends Component {
     const { metrics } = this.context;
     const metricId = this.props.id;
     const sortNumber = metrics.filter(metric => metric.status === 'active').length + 1;
-    const metricToArchive = [
+    const metricToResurrect = [
       {
         ...metrics.find(metric => Number(metric.id) === Number(metricId)),
         status: "active",
         sort: sortNumber
       }
     ];
-    this.context.editMetric(metricToArchive);
+    fetch(config.API_ENDPOINT + `/api/metrics/${metricId}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(metricToResurrect[0])
+    })
+    .then(res => {
+      if (!res.ok)
+        return res.json().then(error => Promise.reject(error))
+    })
+    .then(() => {
+      this.context.editMetric(metricToResurrect);
+    })
+    .catch(error => {
+      console.error({ error });
+    });
   };
 
   render() {

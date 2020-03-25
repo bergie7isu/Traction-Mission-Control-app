@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TractionMissionControlContext from '../TractionMissionControlContext';
 import './MetricResult.css';
+import config from '../config';
 
 class MetricResult extends Component {
   static contextType = TractionMissionControlContext;
@@ -41,11 +42,28 @@ class MetricResult extends Component {
           data: metricData
         }
       ];
-      this.setState({
-        showInput: false,
-        showEdit: true
+
+      fetch(config.API_ENDPOINT + `/api/metrics/${metricId}`, {
+        method: 'PATCH',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(updatedMetric[0])
+      })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(error => Promise.reject(error))
+      })
+      .then(() => {
+        this.setState({
+          showInput: false,
+          showEdit: true
+        });
+        this.context.editMetric(updatedMetric);
+      })
+      .catch(error => {
+        console.error({ error });
       });
-      this.context.editMetric(updatedMetric);
     };
   };
 

@@ -13,7 +13,6 @@ import Scorecard from './Scorecard/Scorecard';
 import AddMetric from './AddMetric/AddMetric';
 import EditMetric from './EditMetric/EditMetric';
 import TractionMissionControlContext from './TractionMissionControlContext';
-import data from './dummy-store';
 import config from './config';
 
 class App extends Component {

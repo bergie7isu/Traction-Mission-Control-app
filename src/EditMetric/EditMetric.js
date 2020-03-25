@@ -3,6 +3,7 @@ import TractionMissionControlContext from '../TractionMissionControlContext';
 import ValidationError from '../ValidationError/ValidationError';
 import './EditMetric.css';
 import moment from 'moment';
+import config from '../config';
 
 class EditMetric extends Component {
     static contextType = TractionMissionControlContext;
@@ -36,12 +37,11 @@ class EditMetric extends Component {
     };
 
     componentDidMount() {
-        const { metrics, currentWeek } = this.context;
+        const { metrics } = this.context;
         const metricId = this.props.match.params.id;
         const metricToEdit = metrics.filter(metric => Number(metric.id) === Number(metricId));
-        const planStartDate = (metricToEdit[0].data.find(datum => datum.plan !== null)) ? metricToEdit[0].data.find(datum => datum.plan !== null).date : currentWeek;
-        const reversedMetricToEdit = metricToEdit[0].data.map(datum => datum).reverse();
-        const planEndDate = (reversedMetricToEdit.find(datum => datum.plan !== null)) ? reversedMetricToEdit.find(datum => datum.plan !== null).date : moment(currentWeek).add(12, 'weeks').format('YYYY-MM-DD');
+        const planStartDate = metricToEdit[0].data[0].date;
+        const planEndDate = metricToEdit[0].data[metricToEdit[0].data.length - 1].date;
         this.setState({
             metric: {
                 value: metricToEdit[0].metric_name,
@@ -87,7 +87,62 @@ class EditMetric extends Component {
                 data: this.state.metricData
             }
         ];
-        this.context.editMetric(updatedMetric);
+        fetch(config.API_ENDPOINT + `/api/metrics/${metricId}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedMetric[0])
+        })
+        .then(res => {
+            if (!res.ok)
+                return res.json().then(error => Promise.reject(error))
+        })
+        .then(() => {
+            this.context.editMetric(updatedMetric);
+            this.props.history.goBack();
+        })
+        .catch(error => {
+            console.error({ error });
+        });
+    };
+
+    handleArchive() {
+        const { metrics } = this.context;
+        const metricId = this.props.match.params.id;
+        const metricsToArchive = [
+            {
+                ...metrics.find(metric => Number(metric.id) === Number(metricId)),
+                status: "archived",
+                archived: moment(Date.now()).format('YYYY-MM-DD')
+            }
+        ];
+        const sortNumber = Number(metricsToArchive[0].sort);
+        const activeMetrics = metrics.filter(metric => metric.status === 'active');
+        for (let i = 0; i < activeMetrics.length; i++) {
+            if (Number(activeMetrics[i].sort) > sortNumber) {
+                metricsToArchive.push({...activeMetrics[i], sort: Number(activeMetrics[i].sort) - 1});
+            };
+        };
+        for (let i = 0; i < metricsToArchive.length; i++) {
+            fetch(config.API_ENDPOINT + `/api/metrics/${metricsToArchive[i].id}`, {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(metricsToArchive[i])
+            })
+            .then(res => {
+                if (!res.ok)
+                    return res.json().then(error => Promise.reject(error))
+            })
+            .then(() => {
+                this.context.editMetric([metricsToArchive[i]]);
+            })
+            .catch(error => {
+                console.error({ error });
+            });
+        };
         this.props.history.goBack();
     };
 
@@ -168,7 +223,9 @@ class EditMetric extends Component {
                     }
                 );
             };
+            console.log('dataToAdd', dataToAdd);
             const newData = [...this.state.metricData, ...dataToAdd];
+            console.log(newData);
             this.setState({
                 planEndDate: nextDate,
                 metricData: newData,
@@ -270,7 +327,7 @@ class EditMetric extends Component {
     };
 
     validateDecimals() {
-        const decimals = this.state.decimals.value.trim();
+        const decimals = this.state.decimals.value;
         if (decimals < 0 || decimals > 5 || decimals === '') {
             return 'Pick a number of decimals between 0 and 5!'
         };
@@ -286,27 +343,6 @@ class EditMetric extends Component {
         if (this.state.endDateError) {
             return `End Date must be ${moment(this.state.latestPlan).format('M/D/YYYY')} or later!`
         };
-    };
-
-    handleArchive() {
-        const { metrics } = this.context;
-        const metricId = this.props.match.params.id;
-        const metricsToArchive = [
-            {
-                ...metrics.find(metric => Number(metric.id) === Number(metricId)),
-                status: "archived",
-                archived: moment(Date.now()).format('YYYY-MM-DD')
-            }
-        ];
-        const sortNumber = Number(metricsToArchive[0].sort);
-        const activeMetrics = metrics.filter(metric => metric.status === 'active');
-        for (let i = 0; i < activeMetrics.length; i++) {
-            if (Number(activeMetrics[i].sort) > sortNumber) {
-                metricsToArchive.push({...activeMetrics[i], sort: Number(activeMetrics[i].sort) - 1});
-            };
-        };
-        this.context.editMetric(metricsToArchive);
-        this.props.history.goBack();
     };
 
     clearStartDateError() {
