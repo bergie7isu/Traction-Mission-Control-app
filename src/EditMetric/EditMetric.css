@@ -60,6 +60,7 @@
     border: 2px solid rgb(142, 169, 219);
     border-radius: 5px;
     transition-duration: 0.4s;
+    box-shadow: 6px 6px 6px 0 rgba(0,0,0,0.2);
 }
   
 .edit-metric-buttons button:hover:not([disabled]) {
@@ -80,13 +81,25 @@
     position: absolute;
     right: 2px;
     top: 2px;
+    box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2);
 }
   
-.archive-metric-button:hover:not([disabled]) {
+.archive-metric-button:hover:not([disabled]), .clear-start-date-error:hover, .clear-start-date-error:hover {
     background-color: red;
     border-color: darkred;
     color: white;
     cursor: pointer;
+}
+
+.clear-start-date-error, .clear-end-date-error {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 5px;
+    padding: 2px;
+    border: 2px solid red;
+    border-radius: 5px;
+    transition-duration: 0.4s;
+    box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2);
 }
 
 .data-input label {
@@ -119,6 +132,20 @@
     display: inline-flex;
     flex-direction: column;
     margin: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.plan-date-wrapper label {
+    margin-bottom: 5px;
+}
+
+.plan-date-wrapper input {
+    text-align: center;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .reset-plan-dates {

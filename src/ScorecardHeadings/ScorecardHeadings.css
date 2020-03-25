@@ -87,7 +87,7 @@
 }
 
 .move-current-week-left-button, .move-current-week-right-button {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+  box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2);;
   margin: 2px;
   padding: 2px;
   border-radius: 5px;

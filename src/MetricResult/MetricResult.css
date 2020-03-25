@@ -38,12 +38,28 @@
 .metric-actual-input-form input {
   text-align: center;
   width: 90%;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .edit-result-button {
+  box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2);
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 1px;
+  right: 1px;
+  padding: 1px;
+  border-radius: 5px;
+  transition-duration: 0.4s;
+  font-weight: bold;
+  font-size: 10px;
+  border: 2px solid darkgray;
+}
+
+.edit-result-button:hover {
+  background-color: darkgray;
+  border-color: gray;
+  color: white;
+  cursor: pointer;
 }
 
 .metric-actual-input-form input::-webkit-outer-spin-button, .metric-actual-input-form input::-webkit-inner-spin-button {
@@ -53,4 +69,22 @@
 
 .metric-actual-input-form input[type=number] {
   -moz-appearance: textfield;
+}
+
+.metric-actual-input-submit-button {
+  box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2);
+  margin: 2px;
+  padding: 2px;
+  border-radius: 5px;
+  transition-duration: 0.4s;
+  font-weight: bold;
+  font-size: 12px;
+  border: 2px solid rgb(142, 169, 219);
+}
+
+.metric-actual-input-submit-button:hover {
+  background-color: rgb(142, 169, 219);
+  border-color: rgb(61, 108, 193);
+  color: white;
+  cursor: pointer;
 }

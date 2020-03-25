@@ -223,9 +223,7 @@ class EditMetric extends Component {
                     }
                 );
             };
-            console.log('dataToAdd', dataToAdd);
             const newData = [...this.state.metricData, ...dataToAdd];
-            console.log(newData);
             this.setState({
                 planEndDate: nextDate,
                 metricData: newData,

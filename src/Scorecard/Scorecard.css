@@ -53,6 +53,7 @@
     border: 2px solid rgb(255, 124, 128);
     border-radius: 5px;
     transition-duration: 0.4s;
+    box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2);
 }
 
 .reset-scorecard-dates:hover {
