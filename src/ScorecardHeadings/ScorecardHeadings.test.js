@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MetricInfo from './Metric';
+import ScorecardHeadings from './ScorecardHeadings';
 import { BrowserRouter } from 'react-router-dom';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<BrowserRouter>
-      <MetricInfo />
+  ReactDOM.render(
+    <BrowserRouter>
+      <ScorecardHeadings 
+        dates_to_show={[]}
+        type='active'
+      />
     </BrowserRouter>, div);
   ReactDOM.unmountComponentAtNode(div);
 });
