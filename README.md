@@ -27,6 +27,7 @@ Quickly view and filter archived to-dos and issues for yourself and your team. V
 ## Screenshots:
 ![Screenshot of To-do List](/src/images/screenshots/todos-screenshot.JPG?raw=true "To-do List")
 ![Screenshot of Issues List](/src/images/screenshots/issues-screenshot.JPG?raw=true "Issues List")
+![Screenshot of Scorecard](/src/images/screenshots/metrics-screenshot.JPG?raw=true "Scorecard")
 ![Screenshot of Archive](/src/images/screenshots/archive-screenshot.JPG?raw=true "Archive Filtering")
 
 ## Technologies Used:
