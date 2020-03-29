@@ -75,7 +75,7 @@
     font-weight: bold;
     margin: 5px;
     padding: 2px;
-    border: 2px solid red;
+    border: 2px solid orange;
     border-radius: 5px;
     transition-duration: 0.4s;
     position: absolute;
@@ -83,10 +83,10 @@
     top: 2px;
     box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2);
 }
-  
-.archive-metric-button:hover:not([disabled]), .clear-start-date-error:hover, .clear-start-date-error:hover {
-    background-color: red;
-    border-color: darkred;
+
+.archive-metric-button:hover {
+    background-color: orange;
+    border-color: orangered;
     color: white;
     cursor: pointer;
 }
@@ -102,6 +102,13 @@
     box-shadow: 4px 4px 4px 0 rgba(0,0,0,0.2);
 }
 
+.clear-start-date-error:hover, .clear-end-date-error:hover {
+    background-color: red;
+    border-color: darkred;
+    color: white;
+    cursor: pointer;
+}
+
 .data-input label {
     display: inline-block;
     text-align: right;
@@ -111,13 +118,19 @@
     margin-right: 5px;
 }
 
-.data-input input {
+.data-input input[type=text] {
     display: inline-block;
     text-align: center;
     text-align-last: center;
     border-radius: 5px;
     font-size: 16px;
     width: 100px;
+    cursor: text;
+}
+
+.data-input input:disabled {
+    background-color: lightgray;
+    cursor: default;
 }
 
 .plan-date-wrapper {

@@ -14,13 +14,11 @@ class MetricResult extends Component {
   };
 
   componentDidMount() {
-    const { currentWeek } = this.context;
     const showInput = (this.props.result !== 'none' && 
-      this.props.status === 'active' && 
-      this.props.date === currentWeek && 
-      !this.props.result.result);
-    const showEdit = (this.props.date === currentWeek &&
-      this.props.result.result &&
+      this.props.status === 'active' &&  
+      !this.props.result.result &&
+      this.props.result.result !== 0);
+    const showEdit = ((this.props.result.result || this.props.result.result === 0) &&
       this.props.status === 'active');
     this.setState({
       showInput: showInput,
@@ -30,47 +28,53 @@ class MetricResult extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    if (this.state.result || this.state.result === 0) {
-      const { metrics } = this.context;
-      const metricId = this.props.metricId;
-      const metricToUpdate = metrics.find(metric => Number(metric.id) === Number(metricId));
-      const metricData = metricToUpdate.data.map(result => 
-        (result.date === this.props.date) ? {...result, result: this.state.result} : result);
-      const updatedMetric = [
-        {
-          ...metricToUpdate, 
-          data: metricData
-        }
-      ];
+    const { metrics } = this.context;
+    const metricId = this.props.metricId;
+    const metricToUpdate = metrics.find(metric => Number(metric.id) === Number(metricId));
+    const metricData = metricToUpdate.data.map(result => 
+      (result.date === this.props.date) ? {...result, result: this.state.result} : result);
+    const updatedMetric = [
+      {
+        ...metricToUpdate, 
+        data: metricData
+      }
+    ];
 
-      fetch(config.API_ENDPOINT + `/api/metrics/${metricId}`, {
-        method: 'PATCH',
-        headers: {
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify(updatedMetric[0])
-      })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(error => Promise.reject(error))
-      })
-      .then(() => {
+    fetch(config.API_ENDPOINT + `/api/metrics/${metricId}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(updatedMetric[0])
+    })
+    .then(res => {
+      if (!res.ok)
+        return res.json().then(error => Promise.reject(error))
+    })
+    .then(() => {
+      if (this.state.result !== null) {
         this.setState({
           showInput: false,
           showEdit: true
         });
-        this.context.editMetric(updatedMetric);
-      })
-      .catch(error => {
-        console.error({ error });
-      });
-    };
+      };
+      this.context.editMetric(updatedMetric);
+    })
+    .catch(error => {
+      console.error({ error });
+    });
   };
 
   updateResult(result) {
-    this.setState({
-      result: Number(result)
-    });
+    if (result === '') {
+      this.setState({
+        result: null
+      });
+    } else {
+      this.setState({
+        result: Number(result)
+      });
+    };
   };
 
   handleEditClick() {
@@ -81,6 +85,7 @@ class MetricResult extends Component {
   };
 
   render() {
+    const { currentWeek } = this.context;
     const colorCode = (this.props.result === 'none') ? 'gray' :
       (this.props.result.result === null || !this.props.result.plan) ? '' : 
       (this.props.metric_type === '>' && this.props.result.result >= this.props.result.plan) ? 'green' : 
@@ -90,19 +95,10 @@ class MetricResult extends Component {
       (Number(this.props.decimals) === 2) ? '0.01' :
       (Number(this.props.decimals) === 3) ? '0.001' :
       (Number(this.props.decimals) === 4) ? '0.0001' : '0.00001';
-    const { currentWeek } = this.context;
-    const showInput = (this.props.result !== 'none' && 
-      this.props.status === 'active' && 
-      this.props.date === currentWeek && 
-      (!this.props.result.result || this.state.showInput));
-    const showEdit = (this.props.date === currentWeek &&
-      !showInput &&
-      this.props.result.plan &&
-      this.props.status === 'active');
     return (
       <div className='metric-result'>
         <div className={`metric-actual ${colorCode}`}>
-          {(showInput || (this.props.date === currentWeek && this.state.showInput)) ? 
+          {this.props.date === currentWeek && this.state.showInput ? 
           <div className='metric-actual-input'>
             <form
               className='metric-actual-input-form'
@@ -112,7 +108,7 @@ class MetricResult extends Component {
                   step={decimals}
                   name='metric-actual-input'
                   id='metric-actual-input'
-                  value={this.state.result || ''}
+                  value={this.state.result !== null ? this.state.result : ''}
                   placeholder='Enter Result!'
                   onChange={e => this.updateResult(e.target.value)}/>
                 <button
@@ -122,12 +118,12 @@ class MetricResult extends Component {
                 </button>
             </form>
           </div> : 
-          (this.props.result.result) ?
+          (this.props.result.result || this.props.result.result === 0) ?
               (this.props.metric_format === 'dollars' ? '$' : '') + 
                 this.props.result.result.toFixed(this.props.decimals) + 
                   (this.props.metric_format === 'percent' ? '%' : '') : 
               ''}
-          {(showEdit || (this.props.date === currentWeek && this.state.showEdit)) ?
+          {this.props.date === currentWeek && this.state.showEdit ?
             <button
               className='edit-result-button'
               type='button'

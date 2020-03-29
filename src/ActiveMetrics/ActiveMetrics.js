@@ -8,13 +8,19 @@ import './ActiveMetrics.css';
 class ActiveMetrics extends Component {
   static contextType = TractionMissionControlContext;
 
+  componentDidMount() {
+    setTimeout(function() {
+      document.getElementById('active-metrics').scrollLeft = 1700;
+    }, 1);
+  };
+
   render() {
     const { metrics } = this.context;
     const metricsToDisplay = metrics.filter(metric => metric.status === 'active').sort((a, b) => a.sort - b.sort);
     const numberOfActiveMetrics = metricsToDisplay.length;
     return (
       <div className='active-metrics-wrapper'>
-        <div className='active-metrics'>
+        <div className='active-metrics' id='active-metrics'>
           <ScorecardHeadings 
             dates_to_show={this.props.dates_to_show}
             type='active'

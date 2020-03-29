@@ -90,7 +90,7 @@ class ScorecardHeadings extends Component {
                   <div className='metric-results-date-heading'>
                     {moment(date).format('M/D/YYYY')}
                   </div>
-                  <div className={`metric-results-date-current-week-wrapper ${this.props.type}`}>
+                  <div className={`metric-results-date-current-week-wrapper ${this.props.type}`} id='scroll'>
                     <button
                       className='move-current-week-left-button'
                       type='button'

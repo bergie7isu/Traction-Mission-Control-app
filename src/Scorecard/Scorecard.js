@@ -77,6 +77,7 @@ class Scorecard extends Component {
       startDate: moment(currentWeek).subtract(12, 'weeks').format('YYYY-MM-DD'),
       endDate: moment(currentWeek).format('YYYY-MM-DD')
     });
+    document.getElementById('active-metrics').scrollLeft = 1700;
   };
 
   render() {
