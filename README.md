@@ -35,3 +35,6 @@ React, CSS, Node, Express, PostgreSQL
 
 ## API Documentation:
 https://github.com/bergie7isu/Traction-Mission-Control-api
+
+## Testing:
+Here there be a test.
